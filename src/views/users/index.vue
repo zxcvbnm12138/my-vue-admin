@@ -160,7 +160,7 @@ export default {
         label: '女'
       }],
       tableKey: 0,
-      action: 'http://localhost:8080/movie_ssm_war/users/updateavater',
+      action: 'http://localhost:8081/movie_ssm_war/users/updateavater',
       newaction: '',
       list: null,
       total: 0,

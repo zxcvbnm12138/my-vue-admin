@@ -154,7 +154,7 @@ export default {
     return {
       spfloptions: [],
       tableKey: 0,
-      action: 'http://localhost:8080/movie_ssm_war/shangpinxinxi/updatehm',
+      action: 'http://localhost:8081/movie_ssm_war/shangpinxinxi/updatehm',
       newaction: '',
       list: null,
       total: 0,

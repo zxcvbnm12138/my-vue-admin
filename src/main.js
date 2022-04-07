@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 Vue.use(ElementUI)
-axios.defaults.baseURL = 'http://localhost:8080/movie_ssm_war/'
+axios.defaults.baseURL = 'http://localhost:8081/movie_ssm_war/'
 Vue.prototype.$baseUrl = baseUrl.get()
 import VueQuillEditor from 'vue-quill-editor'
 // require styles 导入富文本编辑器对应的样式

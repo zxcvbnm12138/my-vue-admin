@@ -251,7 +251,7 @@ export default {
       dylxoptions: [],
       fytoptions: [],
       tableKey: 0,
-      action: 'http://localhost:8080/movie_ssm_war/reyingdianying/updatehm',
+      action: 'http://localhost:8081/movie_ssm_war/reyingdianying/updatehm',
       newaction: '',
       newvideoaction: '',
       list: null,

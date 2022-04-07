@@ -80,10 +80,13 @@ export default {
                 var content =
             '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
               case 1:
+                // eslint-disable-next-line no-redeclare
                 var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
             }
           }
@@ -128,9 +131,7 @@ export default {
       const addtimeList = this.dataSource.map((item) => {
         return item.addtime
       })
-      const goodnameList = this.dataSource.map((item) => {
-        return item.goodname
-      })
+
       const buynumberList = this.dataSource.map((item) => {
         return item.buynumber
       })
@@ -153,10 +154,13 @@ export default {
                 var content =
             '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
               case 1:
+                // eslint-disable-next-line no-redeclare
                 var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
             }
           }
@@ -200,9 +204,7 @@ export default {
       const addtimeList = this.dataSource.map((item) => {
         return item.addtime
       })
-      const goodnameList = this.dataSource.map((item) => {
-        return item.goodname
-      })
+
       const buynumberList = this.dataSource.map((item) => {
         return item.buynumber
       })
@@ -225,10 +227,13 @@ export default {
                 var content =
             '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
               case 1:
+                // eslint-disable-next-line no-redeclare
                 var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
             }
           }
@@ -272,9 +277,6 @@ export default {
       const addtimeList = this.dataSource.map((item) => {
         return item.addtime
       })
-      const goodnameList = this.dataSource.map((item) => {
-        return item.goodname
-      })
       const buynumberList = this.dataSource.map((item) => {
         return item.buynumber
       })
@@ -297,10 +299,13 @@ export default {
                 var content =
             '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
               case 1:
+                // eslint-disable-next-line no-redeclare
                 var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
+                // eslint-disable-next-line no-unreachable
                 break
             }
           }

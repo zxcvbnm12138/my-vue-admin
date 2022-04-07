@@ -2,11 +2,11 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.value" placeholder="请输入用户手机号" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter" style="margin-left: 20px;">
+      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 20px;" @click="handleFilter">
         搜索
       </el-button>
     </div>
-    
+
     <el-table :key="tableKey" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%;" @sort-change="sortChange">
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
         <template slot-scope="{row}">
@@ -28,17 +28,17 @@
 
       <el-table-column label="票数" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{row.buynumber}}张</span>
+          <span>{{ row.buynumber }}张</span>
         </template>
       </el-table-column>
       <el-table-column label="单价" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{row.price}}元</span>
+          <span>{{ row.price }}元</span>
         </template>
       </el-table-column>
       <el-table-column label="总价" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{row.total}}元</span>
+          <span>{{ row.total }}元</span>
         </template>
       </el-table-column>
 
@@ -56,7 +56,7 @@
       </el-table-column>
       <el-table-column label="已选座位" width="102px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.address}}</span>
+          <span>{{ row.address }}</span>
         </template>
       </el-table-column>
       <el-table-column label="下单时间" width="104px" align="center">
@@ -80,8 +80,14 @@
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px"
-        style="width: 400px; margin-left:50px;">
+      <el-form
+        ref="dataForm"
+        :rules="rules"
+        :model="temp"
+        label-position="left"
+        label-width="70px"
+        style="width: 400px; margin-left:50px;"
+      >
 
         <el-form-item label="订单编号" prop="orderid">
           <el-input v-model="temp.orderid" />
@@ -108,10 +114,10 @@
               v-for="(item,index) in typeoptions"
               :key="index"
               :label="item.str"
-              :value="item.val">
-            </el-option>
+              :value="item.val"
+            />
           </el-select>
-      </el-form-item>
+        </el-form-item>
 
         <el-form-item label="状态" prop="status">
           <el-select v-model="temp.status" filterable placeholder="请选择订单状态">
@@ -119,14 +125,14 @@
               v-for="(item,index) in statusoptions"
               :key="index"
               :label="item.val"
-              :value="item.val">
-            </el-option>
+              :value="item.val"
+            />
           </el-select>
-      </el-form-item>
+        </el-form-item>
         <el-form-item label="已选座位" prop="address">
           <el-input v-model="temp.address" />
         </el-form-item>
-        
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -137,121 +143,121 @@
         </el-button>
       </div>
     </el-dialog>
-    
+
   </div>
 </template>
 
 <script>
-  import waves from '@/directive/waves' // waves directive
-  import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-  import axios from 'axios'
-  import dayjs from 'dayjs'
+import waves from '@/directive/waves' // waves directive
+import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import axios from 'axios'
+import dayjs from 'dayjs'
 
-  export default {
-    name: 'index',
-    components: {
-      Pagination
-    },
-    directives: {
-      waves
-    },
-    filters: {
-      fmtTime(v, str) {
-        return dayjs(v).format(str)
+export default {
+  name: 'Index',
+  components: {
+    Pagination
+  },
+  directives: {
+    waves
+  },
+  filters: {
+    fmtTime(v, str) {
+      return dayjs(v).format(str)
+    }
+  },
+  data() {
+    return {
+      typeoptions: [
+        {
+          str: '线上支付',
+          val: 1
+        },
+        {
+          str: '线下支付',
+          val: 2
+        }
+      ],
+      statusoptions: [
+        {
+          val: '已完成'
+        },
+        {
+          val: '已取消'
+        },
+        {
+          val: '已支付'
+        },
+        {
+          val: '已退款'
+        },
+        {
+          val: '未支付'
+        }
+      ],
+      tableKey: 0,
+      // action:"http://localhost:8081/movie_ssm_war/shangpingoumai/updatehm",
+      // newaction:'',
+      list: null,
+      total: 0,
+      listLoading: true,
+      // imageUrl: '',
+      listQuery: {
+        page: 1,
+        limit: 20,
+        sort: '+id',
+        value: ''
+      },
+      temp: {
+        orderid: '',
+        goodname: '',
+        buynumber: '',
+        price: '',
+        total: '',
+        type: '',
+        status: '',
+        address: ''
+      },
+      rules: {
+        price: [{
+          // required: true,
+          pattern: /^-?[1-9]\d*$/,
+          message: '请输入整数',
+          trigger: 'blur'
+        }],
+        total: [{
+          // required: true,
+          pattern: /^-?[1-9]\d*$/,
+          message: '请输入整数',
+          trigger: 'blur'
+        }]
+      },
+      dialogFormVisible: false,
+      dialogStatus: '',
+      textMap: {
+        update: '修改商品订单信息'
       }
-    },
-    data() {
-      return {
-        typeoptions: [
-          {
-            str:'线上支付',
-            val:1
-          },
-          {
-            str:'线下支付',
-            val:2
-          },
-        ],
-        statusoptions: [
-          {
-            val:'已完成',
-          },
-          {
-            val:'已取消',
-          },
-          {
-            val:'已支付',
-          },
-          {
-            val:'已退款',
-          },
-          {
-            val:'未支付',
-          }
-        ],
-        tableKey: 0,
-        // action:"http://localhost:8080/movie_ssm_war/shangpingoumai/updatehm",
-        // newaction:'',
-        list: null,
-        total: 0,
-        listLoading: true,
-        // imageUrl: '',
-        listQuery: {
-          page: 1,
-          limit: 20,
-          sort: '+id',
-          value:''
-        },
-        temp: {
-          orderid: '',
-          goodname:'',
-          buynumber:'',
-          price:'',
-          total:'',
-          type:'',
-          status:'',
-          address:'',
-        },
-         rules: {
-          price: [{
-            // required: true,
-            pattern:/^-?[1-9]\d*$/,
-            message: '请输入整数',
-            trigger: 'blur'
-          }],
-          total: [{
-            // required: true,
-            pattern:/^-?[1-9]\d*$/,
-            message: '请输入整数',
-            trigger: 'blur'
-          }],
-        },
-        dialogFormVisible: false,
-        dialogStatus: '',
-        textMap: {
-          update: '修改商品订单信息'
-        },
-      }
-    },
-    created() {
-      this.getList()
-    },
-    methods: {
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
     getList() {
       this.listLoading = true
-      axios.get('orders/yqxinfo',{params:this.listQuery}).then((res) => {
-        //console.log(res.data);
+      axios.get('orders/yqxinfo', { params: this.listQuery }).then((res) => {
+        // console.log(res.data);
         this.list = res.data.list
         this.total = res.data.total
       })
       this.listLoading = false
     },
     handleUpdate(row) {
-      this.imageUrl = this.$baseUrl.url+row.tupian
+      this.imageUrl = this.$baseUrl.url + row.tupian
       this.temp = Object.assign({}, row) // copy obj
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
-      //console.log(this.temp.dianyingjianjie);
+      // console.log(this.temp.dianyingjianjie);
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
@@ -268,12 +274,12 @@
       this.$refs['dataForm'].validate((valid) => {
         // this.temp.dianyingjianjie = '<p>'+ this.temp.dianyingjianjie +'</p>'
         const tempData = Object.assign({}, this.temp)
-        //console.log(tempData)
+        // console.log(tempData)
         if (valid) {
           axios.post('orders/updateod', tempData).then((res) => {
-            //console.log(res);
+            // console.log(res);
             const index = this.list.findIndex(v => v.id === this.temp.id)
-            this.list.splice(index, 1, this.temp);
+            this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
             this.$notify({
               title: 'Success',
@@ -287,9 +293,9 @@
       })
     },
     sortChange(data) {
-      //console.log(data);
-      const { prop,order } = data
-      //console.log(prop,order);
+      // console.log(data);
+      const { prop, order } = data
+      // console.log(prop,order);
       if (prop === 'id') {
         this.sortByID(order)
       }
@@ -304,36 +310,35 @@
     },
     handleFilter() {
       this.listQuery.page = 1
-      //console.log(this.listQuery)
+      // console.log(this.listQuery)
       this.getList()
     },
-    getSortClass: function (key) {
+    getSortClass: function(key) {
       const sort = this.listQuery.sort
       return sort === `+${key}` ? 'ascending' : 'descending'
     },
 
     handleDelete(row, index) {
-      //console.log(row)
-      //console.log(JSON.stringify(row.id));
-      axios.post('orders/del',JSON.stringify(row.id)).then((res) => {
-        //console.log(res);
+      // console.log(row)
+      // console.log(JSON.stringify(row.id));
+      axios.post('orders/del', JSON.stringify(row.id)).then((res) => {
+        // console.log(res);
         this.$notify({
-        title: 'Success',
-        message: '删除成功',
-        type: 'success',
-        duration: 2000
+          title: 'Success',
+          message: '删除成功',
+          type: 'success',
+          duration: 2000
+        })
+        this.list.splice(index, 1)
       })
-      this.list.splice(index, 1)
-    })
-    },
+    }
 
-
-   /*  handlehaibaoSuccess(res, file) {
+    /*  handlehaibaoSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
       this.temp.tupian = res
       //console.log(this.temp);
     }, */
-   /*  beforehaibaoUpload(file) {
+    /*  beforehaibaoUpload(file) {
       this.newaction = this.action+'?uid='+file.uid
       //console.log("img");
       //console.log(this.newaction);
@@ -348,7 +353,7 @@
       //console.log("mp4");
       //console.log(this.newvideoaction)
     } */
-  },
+  }
 }
 
 </script>

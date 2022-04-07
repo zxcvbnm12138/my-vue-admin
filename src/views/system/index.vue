@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       tableKey: 0,
-      action: 'http://localhost:8080/movie_ssm_war/config/updatehm',
+      action: 'http://localhost:8081/movie_ssm_war/config/updatehm',
       newaction: '',
       list: null,
       total: 0,

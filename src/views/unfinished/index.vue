@@ -195,7 +195,7 @@ export default {
         }
       ],
       tableKey: 0,
-      // action:"http://localhost:8080/movie_ssm_war/shangpingoumai/updatehm",
+      // action:"http://localhost:8081/movie_ssm_war/shangpingoumai/updatehm",
       // newaction:'',
       list: null,
       total: 0,
