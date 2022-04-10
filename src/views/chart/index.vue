@@ -1,10 +1,21 @@
 <template>
-  <div class="chart-container" style="display: flex;">
+  <div class="chart-container" style="display: flex;position: relative;">
 
     <div ref="total" class="chart" style="height: 50%;;width:50%" />
     <div ref="day" class="chart" style="height: 50%;;width:50%" />
     <div ref="month" class="chart" style="height: 50%;;width:50%" />
-    <div ref="year" class="chart" style="height: 50%;;width:50%" />
+    <div ref="year" class="chart" style="height: 50%;;width:50%;" />
+    <div class="container" style="position: absolute;top: 25.5em;right: 37.5em;">
+      <div class="block">
+        <el-date-picker
+          v-model="yeartime"
+          type="year"
+          style="width:100px;"
+          @change="getyeartime"
+        />
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -12,7 +23,7 @@
 import axios from 'axios'
 import * as echarts from 'echarts'
 import resize from './mixins/resize'
-
+import dayjs from 'dayjs'
 export default {
   mixins: [resize],
   data() {
@@ -21,7 +32,9 @@ export default {
       totalchart: null,
       daychart: null,
       monthchart: null,
-      yearchart: null
+      yearchart: null,
+      yeartime: '',
+      yeardata: ''
     }
   },
   created() {
@@ -34,7 +47,6 @@ export default {
     this.initChart()
   },
   methods: {
-
     initChart() {
       this.totalchart = echarts.init(this.$refs.total)
       this.daychart = echarts.init(this.$refs.day)
@@ -267,10 +279,18 @@ export default {
       this.monthchart.setOption(option)
     },
     getYearList() {
-      axios.get('orders/findYear').then((res) => {
+      if (this.yeartime !== '') {
+        this.yeardata = dayjs(this.yeartime).year()
+      }
+      const data = { year: this.yeardata }
+      axios.get('orders/findYear', { params: data }).then((res) => {
         const { list: total } = res.data
-        this.dataSource = total
-        this.updateYearChart()
+        if (total.length == 0) {
+          alert('暂无数据，请重新选择！')
+        } else {
+          this.dataSource = total
+          this.updateYearChart()
+        }
       })
     },
     updateYearChart() {
@@ -288,22 +308,28 @@ export default {
         title: {
           text: '影票年销售统计',
           top: '3%',
-          left: '3%'
+          left: 'center'
         },
         tooltip: {
-          tigger: 'axis',
+          tigger: 'item',
           formatter: function(params, ticket, callback) {
-            var index = params.seriesIndex
+            // console.log(params)
+            var index = params.dataIndex
             switch (index) {
               case 0:
+                /*  var content =
+            '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.data.name + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.data.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data.value[0] + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
+             */
                 var content =
-            '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
+            '<div style="line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.data.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data.value[0] + '张</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
                 // eslint-disable-next-line no-unreachable
                 break
               case 1:
                 // eslint-disable-next-line no-redeclare
-                var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.seriesName + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
+                // var content = '<div style="font-size:14px;color:#666;font-weight:400;line-height:1;">' + params.data.name + '</div><div style="margin: 10px 0 0;line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.data.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data.value[0] + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
+                var content =
+            '<div style="line-height:1;"><div style="margin: 0px 0 0;line-height:1;"><span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#91cc75;"></span><span style="font-size:14px;color:#666;font-weight:400;margin-left:2px">' + params.data.name + '</span><span style="float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900">' + params.data.value[0] + '元</span><div style="clear:both"></div></div><div style="clear:both"></div></div>'
                 return content
                 // eslint-disable-next-line no-unreachable
                 break
@@ -311,13 +337,15 @@ export default {
           }
         },
         legend: {
-          top: '5%'
+          orient: 'vertical',
+          left: '5%',
+          top: '10%'
         },
         toolbox: {
           feature: {
             saveAsImage: {}
           }
-        },
+        }, /*
         grid: {
           left: '5%',
           right: '5%',
@@ -329,16 +357,35 @@ export default {
         },
         yAxis: {
           type: 'value'
-        },
+        }, */
+        /* series: [
+          { type: 'pie', name: '销量', data: buynumberList },
+          { type: 'pie', name: '销额', data: totalList }
+        ] */
         series: [
-          { type: 'bar', name: '销量', data: buynumberList },
-          { type: 'bar', name: '销额', data: totalList }
+          {
+            type: 'pie',
+            radius: '50%',
+            data: [
+              { value: buynumberList, name: '销量' },
+              { value: totalList, name: '销额' }
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
         ]
 
       }
       this.yearchart.setOption(option)
+    },
+    getyeartime() {
+      this.getYearList()
     }
-
   }
 
 }
