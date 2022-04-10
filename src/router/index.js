@@ -42,14 +42,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/admin/admininfo',
     name: 'Admin',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '个人中心', icon: 'el-icon-user-solid' },
     children: [
       {
         path: 'admininfo',
         name: 'Admininfo',
         component: () => import('@/views/admininfo/index'),
-        meta: { title: '个人信息', icon: 'el-icon-document' }
+        // meta: { title: '个人信息', icon: 'el-icon-document' }
+        meta: { title: '个人信息' }
       }
     ]
   },
@@ -59,14 +60,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/users/usersinfo',
     name: 'Users',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '用户管理', icon: 'el-icon-s-custom' },
     children: [
       {
         path: 'usersinfo',
         name: 'Usersinfo',
         component: () => import('@/views/users/index'),
-        meta: { title: '用户', icon: 'el-icon-document' }
+        // meta: { title: '用户', icon: 'el-icon-document' }
+        meta: { title: '用户' }
       }
     ]
   },
@@ -75,14 +77,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/movie_type/index',
     name: 'Movie_type',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '电影类型管理', icon: 'el-icon-menu' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/movie_type/index'),
-        meta: { title: '电影类型', icon: 'el-icon-files' }
+        // meta: { title: '电影类型', icon: 'el-icon-files' }
+        meta: { title: '电影类型' }
       }
     ]
   },
@@ -91,14 +94,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/screening_room/index',
     name: 'Screening_room',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '放映厅管理', icon: 'el-icon-location' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/screening_room/index'),
-        meta: { title: '放映厅', icon: 'el-icon-data-board' }
+        // meta: { title: '放映厅', icon: 'el-icon-data-board' }
+        meta: { title: '放映厅' }
       }
     ]
   },
@@ -107,14 +111,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/hotfilm/index',
     name: 'Hotfilm',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '热映电影管理', icon: 'el-icon-video-camera-solid' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/hotfilm/index'),
-        meta: { title: '热映电影', icon: 'el-icon-film' }
+        // meta: { title: '热映电影', icon: 'el-icon-film' }
+        meta: { title: '热映电影' }
       }
     ]
   },
@@ -123,14 +128,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/upcoming_movies/index',
     name: 'Upcoming_movies',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '即将上映管理', icon: 'el-icon-s-promotion' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/upcoming_movies/index'),
-        meta: { title: '即将上映', icon: 'el-icon-film' }
+        // meta: { title: '即将上映', icon: 'el-icon-film' },
+        meta: { title: '即将上映' }
       }
     ]
   },
@@ -139,14 +145,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goods_category/index',
     name: 'Goods_category',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '商品分类管理', icon: 'el-icon-menu' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/goods_category/index'),
-        meta: { title: '商品分类', icon: 'el-icon-files' }
+        // meta: { title: '商品分类', icon: 'el-icon-files' },
+        meta: { title: '商品分类' }
       }
     ]
   },
@@ -155,14 +162,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goods_info/index',
     name: 'Goods_info',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '商品信息管理', icon: 'el-icon-s-shop' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/goods_info/index'),
-        meta: { title: '商品信息', icon: 'el-icon-present' }
+        // meta: { title: '商品信息', icon: 'el-icon-present' },
+        meta: { title: '商品信息' }
       }
     ]
   },
@@ -171,14 +179,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goods_orders/index',
     name: 'Goods_orders',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '商品订单管理', icon: 'el-icon-s-order' },
     children: [
       {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/goods_orders/index'),
-        meta: { title: '商品订单', icon: 'el-icon-document-checked' }
+        // meta: { title: '商品订单', icon: 'el-icon-document-checked' },
+        meta: { title: '商品订单' }
       }
     ]
   },
@@ -237,14 +246,15 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/statistics/chart',
     name: 'Statistics',
-    alwaysShow: true,
+    // alwaysShow: true,
     meta: { title: '统计中心', icon: 'el-icon-s-marketing' },
     children: [
       {
         path: 'chart',
         name: 'Chart',
         component: () => import('@/views/chart/index'),
-        meta: { title: '销售统计', icon: 'el-icon-pie-chart' }
+        // meta: { title: '销售统计', icon: 'el-icon-pie-chart' },
+        meta: { title: '销售统计' }
       }
     ]
   },
